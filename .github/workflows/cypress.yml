@@ -1,8 +1,10 @@
 name: Cypress Tests
+
 on:
   push:
   schedule:
     - cron: '40 4 * * 1-5'
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -20,14 +22,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Check skip date
-        id: check-skip-date
+      - name: Check skip dates
+        id: check-skip-dates
         run: |
-          SKIP_DATE=$(cat skipDate.json | jq -r '.skipDate')
-          CURRENT_DATE=$(date +%Y-%m-%d)
-          if [ "$SKIP_DATE" == "$CURRENT_DATE" ]; then
-            echo "Skipping tests on $CURRENT_DATE"
-            exit 0
+          if [ -f skipDates.json ]; then
+            SKIP_DATES=$(cat skipDates.json | jq -r '.[]')
+            CURRENT_DATE=$(date +%Y-%m-%d)
+            for SKIP_DATE in $SKIP_DATES; do
+              if [ "$SKIP_DATE" == "$CURRENT_DATE" ]; then
+                echo "Skipping tests on $CURRENT_DATE"
+                exit 0
+              fi
+            done
           fi
 
       - name: Cypress run

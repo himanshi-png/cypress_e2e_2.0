@@ -18,18 +18,42 @@
             margin: 10px 0;
         }
 
-        button {
-            padding: 10px 20px;
+        #saveSkipDate {
+            padding: 5px 10px;
             font-size: 16px;
+            background-color: forestgreen;
+            color: white;
+        }
+
+        #listSkipDates {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: royalblue;
+            color: white;
+        }
+
+        #removeSkipDate {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: tomato;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-    <h1>Configure Skip Date for GitHub Action</h1>
+    <h1>Nitin Gupta</h1>
     <label for="skipDate">Select a date to skip:</label>
     <input type="date" id="skipDate">
     <button id="saveSkipDate">Save</button>
+    <hr>
+    <label for="removeDate">Select a date to remove:</label>
+    <input type="date" id="removeDate">
+    <button id="removeSkipDate">Remove Skip Date</button>
+
+    <hr>
+    <button id="listSkipDates">List Skip Dates</button>
+    <div id="skipDatesList"></div>
 
     <script>
         document.getElementById('saveSkipDate').addEventListener('click', () => {
@@ -42,7 +66,34 @@
                 body: JSON.stringify({ skipDate })
             })
                 .then(response => response.json())
-                .then(data => alert(data.message))
+                .then(data => console.log(data.message))
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('listSkipDates').addEventListener('click', () => {
+            fetch('/list-skip-dates')
+                .then(response => response.json())
+                .then(data => {
+                    const skipDatesList = document.getElementById('skipDatesList');
+                    skipDatesList.innerHTML = '<h2>Skip Dates:</h2>';
+                    data.skipDates.forEach(date => {
+                        skipDatesList.innerHTML += `<p>${date}</p>`;
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('removeSkipDate').addEventListener('click', () => {
+            const skipDate = document.getElementById('removeDate').value;
+            fetch('/remove-skip-date', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ skipDate })
+            })
+                .then(response => response.json())
+                .then(data => console.log(data.message))
                 .catch(error => console.error('Error:', error));
         });
     </script>
