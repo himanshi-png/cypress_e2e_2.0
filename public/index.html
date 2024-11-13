@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skip Date Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label,
+        input,
+        button {
+            display: block;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Configure Skip Date for GitHub Action</h1>
+    <label for="skipDate">Select a date to skip:</label>
+    <input type="date" id="skipDate">
+    <button id="saveSkipDate">Save</button>
+
+    <script>
+        document.getElementById('saveSkipDate').addEventListener('click', () => {
+            const skipDate = document.getElementById('skipDate').value;
+            fetch('/save-skip-date', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ skipDate })
+            })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+
+</html>

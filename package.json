@@ -1,5 +1,18 @@
 {
   "dependencies": {
-    "cypress": "^13.12.0"
-  }
+    "cypress": "^13.12.0",
+    "express": "^4.21.1",
+    "jq": "^1.7.2"
+  },
+  "name": "cypress_e2e",
+  "version": "1.0.0",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

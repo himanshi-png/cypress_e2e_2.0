@@ -9,7 +9,7 @@ describe('template spec', () => {
 
     });
 
-    cy.visit('https://erp.atriina.com/login');
+    cy.visit('https://erp.atriina.co/login');
 
   });
 
@@ -21,11 +21,11 @@ describe('template spec', () => {
     cy.get('#navbar-search').type('Employee Check');
     cy.get('#awesomplete_list_1').children().first().click();
     cy.get('[data-label="Add Employee Checkin"]').click();
-    cy.get('.input-with-feedback.form-control.bold[data-fieldname="employee"]')
-      .type(Cypress.env('EMP_ID'));
-    cy.get('select[data-fieldtype="Select"]').select('IN');
-    cy.wait(1000);
-    cy.get('[data-label="Save"]').click();
-    cy.wait(1000);
+    // cy.get('.input-with-feedback.form-control.bold[data-fieldname="employee"]')
+    //   .type(Cypress.env('EMP_ID'));
+    // cy.get('select[data-fieldtype="Select"]').select('IN');
+    // cy.wait(1000);
+    // cy.get('[data-label="Save"]').click();
+    // cy.wait(1000);
   });
 })

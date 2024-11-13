@@ -10,6 +10,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+
+       - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+       - name: Check skip date
+        id: check-skip-date
+        run: |
+          SKIP_DATE=$(cat skipDate.json | jq -r '.skipDate')
+          CURRENT_DATE=$(date +%Y-%m-%d)
+          if [ "$SKIP_DATE" == "$CURRENT_DATE" ]; then
+            echo "Skipping tests on $CURRENT_DATE"
+            exit 0
+          fi
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
