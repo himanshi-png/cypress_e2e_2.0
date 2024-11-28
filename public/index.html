@@ -16,6 +16,7 @@
         button {
             display: block;
             margin: 10px 0;
+            cursor: pointer;
         }
 
         #saveSkipDate {
@@ -56,9 +57,9 @@
     <div id="skipDatesList"></div>
 
     <script>
-        document.getElementById('saveSkipDate').addEventListener('click', async () => {
+        document.getElementById('saveSkipDate').addEventListener('click', () => {
             const skipDate = document.getElementById('skipDate').value;
-            await fetch('https://cypress-e2e-2-0.onrender.com/save-skip-date', {
+            fetch('https://cypress-e2e-2-0.onrender.com/save-skip-date', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -85,9 +86,9 @@
                 .catch(error => console.error('Error:', error));
         });
 
-        document.getElementById('removeSkipDate').addEventListener('click', async () => {
+        document.getElementById('removeSkipDate').addEventListener('click', () => {
             const skipDate = document.getElementById('removeDate').value;
-            await fetch('https://cypress-e2e-2-0.onrender.com/remove-skip-date', {
+            fetch('https://cypress-e2e-2-0.onrender.com/remove-skip-date', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
