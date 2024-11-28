@@ -12,4 +12,4 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: nodemon server.js
+        run: npm run start
