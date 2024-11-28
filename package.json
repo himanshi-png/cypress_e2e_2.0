@@ -10,7 +10,8 @@
   "main": "cypress.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "cy": "npx cypress run --record --key 7119c8fb-493a-4f67-89e1-ddaf1863a3bc"
   },
   "keywords": [],
   "author": "",

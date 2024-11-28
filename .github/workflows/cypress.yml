@@ -16,7 +16,7 @@ jobs:
           record: true
           parallel: true
         env:
-          CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}
+          CYPRESS_USERNAME: ${{ secrets.CYPRESS_USERNAME }}    # 7119c8fb-493a-4f67-89e1-ddaf1863a3bc
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
           CYPRESS_EMP_ID: ${{ secrets.CYPRESS_EMP_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
