@@ -56,9 +56,9 @@
     <div id="skipDatesList"></div>
 
     <script>
-        document.getElementById('saveSkipDate').addEventListener('click', () => {
+        document.getElementById('saveSkipDate').addEventListener('click', async () => {
             const skipDate = document.getElementById('skipDate').value;
-            fetch('https://cypress-e2e-2-0.onrender.com/save-skip-date', {
+            await fetch('https://cypress-e2e-2-0.onrender.com/save-skip-date', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -70,10 +70,9 @@
                 .catch(error => console.error('Error:', error));
         });
 
-        document.getElementById('listSkipDates').addEventListener('click', () => {
-            fetch('https://cypress-e2e-2-0.onrender.com/list-skip-dates')
+        document.getElementById('listSkipDates').addEventListener('click', async () => {
+            await fetch('https://cypress-e2e-2-0.onrender.com/list-skip-dates')
                 .then(response => {
-                    console.log(response.json().skipDates);
                     return response.json()
                 })
                 .then(data => {
@@ -86,9 +85,9 @@
                 .catch(error => console.error('Error:', error));
         });
 
-        document.getElementById('removeSkipDate').addEventListener('click', () => {
+        document.getElementById('removeSkipDate').addEventListener('click', async () => {
             const skipDate = document.getElementById('removeDate').value;
-            fetch('https://cypress-e2e-2-0.onrender.com/remove-skip-date', {
+            await fetch('https://cypress-e2e-2-0.onrender.com/remove-skip-date', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
