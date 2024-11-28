@@ -25,7 +25,7 @@ describe('template spec', () => {
 
   it('Login in ERP for checkin', () => {
 
-    const today = '2024-11-14'
+    const today = new Date().toISOString().split('T')[0];
 
     cy.task('log', `Today: ${today}`, skipDates.includes(today));
     cy.task('log', `skipDates: ${JSON.stringify(skipDates)}`);
@@ -43,9 +43,9 @@ describe('template spec', () => {
         cy.get('#awesomplete_list_1').children().first().click();
         cy.get('[data-label="Add Employee Checkin"]').click();
         cy.get('select[data-fieldtype="Select"][data-fieldname="log_type"]').select('IN');
-        // cy.wait(1000);
-        // cy.get('[data-label="Save"]').click();
-        // cy.wait(1000);
+        cy.wait(1000);
+        cy.get('[data-label="Save"]').click();
+        cy.wait(1000);
       });
     }
 
