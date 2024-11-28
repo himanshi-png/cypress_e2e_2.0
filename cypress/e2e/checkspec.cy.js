@@ -15,12 +15,23 @@ describe('template spec', () => {
 
   it('Login in ERP for checkin', () => {
 
-    cy.get('#login_email').type(Cypress.env('USERNAME'));
-    cy.get('#login_password').type(Cypress.env('PASSWORD'));
-    cy.get('[type="submit"]').contains('Login').click();
-    cy.get('#navbar-search').type('Employee Check');
-    cy.get('#awesomplete_list_1').children().first().click();
-    cy.get('[data-label="Add Employee Checkin"]').click();
+    const today = new Date().toISOString().split('T')[0];
+
+    if (skipDates.includes(today)) {
+      it('Skip tests for today', () => {
+        cy.log('Tests are skipped for today');
+      });
+    } else {
+      it('Run tests', () => {
+        cy.get('#login_email').type(Cypress.env('USERNAME'));
+        cy.get('#login_password').type(Cypress.env('PASSWORD'));
+        cy.get('[type="submit"]').contains('Login').click();
+        cy.get('#navbar-search').type('Employee Check');
+        cy.get('#awesomplete_list_1').children().first().click();
+        cy.get('[data-label="Add Employee Checkin"]').click();
+      });
+    }
+
     // cy.get('.input-with-feedback.form-control.bold[data-fieldname="employee"]')
     //   .type(Cypress.env('EMP_ID'));
     // cy.get('select[data-fieldtype="Select"]').select('IN');
