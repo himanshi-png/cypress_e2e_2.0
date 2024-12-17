@@ -24,7 +24,7 @@ describe('template spec', () => {
     // cy.get('.input-with-feedback.form-control.bold[data-fieldname="employee"]')
     //   .type(Cypress.env('EMP_ID'));
     // cy.get('select[data-fieldtype="Select"]').select('OUT');
-    cy.get('select[data-fieldtype="Select"][data-fieldname="log_type"]').select('IN');
+    cy.get('select[data-fieldtype="Select"][data-fieldname="log_type"]').select('OUT');
     cy.wait(1000);
     cy.get('[data-label="Save"]').click();
     cy.wait(1000);
